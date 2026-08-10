@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ item.name }}</title>
+</head>
+<body>
+<h1>{{ item.name }}</h1>
+<h2>{{ item.description }}</h2>
+<p>Price:{{ item.price }}</p>
+
+<button id="buy-button" data-item-id="{{ item.id }}">Buy</button>
+
+
+<script>
+    window.STRIPE_PUBLISHABLE_KEY = "{{ stripe_publishable_key }}";
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'shop/js/checkout.js' %}"></script>
+</body>
+</html>
