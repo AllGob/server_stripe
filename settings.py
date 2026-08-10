@@ -2,15 +2,26 @@ import os
 from pathlib import Path
 import logging
 from dotenv import load_dotenv
-
+BASE_DIR = Path(__file__).resolve().parent
+LOGS_DIR = BASE_DIR / "logs"
+LOGS_DIR.mkdir(exist_ok=True)
+AUTH_PASSWORD_VALIDATORS = []
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "Europe/Moscow"
+USE_I18N = True
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
+STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[
+        logging.StreamHandler(),                        
+        logging.FileHandler(LOGS_DIR / "app.log"),      
+    ],
 )
 logger = logging.getLogger(__name__)
-
-BASE_DIR = Path(__file__).resolve().parent
-
 load_dotenv(BASE_DIR / ".env")
 logger.info("Settings initialized, DEBUG=%s", os.environ.get("DEBUG", "True"))
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-insecure-secret-key")
@@ -56,11 +67,3 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-AUTH_PASSWORD_VALIDATORS = []
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "Europe/Moscow"
-USE_I18N = True
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
-STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")

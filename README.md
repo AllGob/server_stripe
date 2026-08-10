@@ -1,3 +1,18 @@
+Тестовая реализация Django + Stripe API (бэкенд)
+Сделано:
+- Модель Item (name, description, price, picture) с админкой Django.
+- Модель Order, объединяет несколько Item в один заказ с общей оплатой.
+- Модель Tax / Discounts привязывается к Order, корректно отображается отдельной строкой в Stripe Checkout.
+- GET /item/{id}/ — страница товара с кнопкой Buy.
+- GET /buy/{id}/ — создаёт Stripe Checkout Session для одного товара.
+- GET /order/{id}/ — страница заказа с кнопкой Buy.
+- GET /buy_order/{id}/ — создаёт Stripe Checkout Session для всего заказа (с учётом налога, если задан).
+- GET /success/, GET /cancel/ — страницы после оплаты/отмены.
+- Django Admin — просмотр и редактирование Item/Order/Tax.
+- Docker — запуск в контейнере.
+- Доступ к удаленке с админкойю
+
+Задание
 Реализовать Django + Stripe API бэкенд со следующим функционалом и условиями:
 Django Модель Item с полями (name, description, price) 
 API с двумя методами:
