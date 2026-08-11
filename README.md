@@ -39,4 +39,20 @@ docker compose up --build
 Номер: 4242 4242 4242 4242 
 Срок: любое будущее число
 CVC: любые 3 цифры 
-
+## Структура проекта 
+<details> <summary>Развернуть</summary>
+├── manage.py
+├── settings.py
+├── urls.py
+├── wsgi.py
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example
+└── shop/
+    ├── models.py         
+    ├── views.py           
+    ├── urls.py
+    ├── admin.py
+    └── templates/shop/
+</details>
